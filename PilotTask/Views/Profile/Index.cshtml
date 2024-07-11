@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Profiles>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<h1 class="display-4">Profile Details</h1>
+<p>
+   
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div class="table">
+
+    <table>
+        <thead>
+            <tr>
+                <th> First Name</th>
+                <th> Last Name</th>
+                <th> Date of birth</th>
+                <th>Phone Number</th>
+                <th> Email Id</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+
+                if (Model != null && Model.Count() > 0)
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.FirstName
+                            </td>
+                            <td>
+                                @item.LastName
+                            </td>
+                            <td>@item.DateOfBirth</td>
+                            <td>@item.PhoneNumber</td>
+                            <td>@item.EmailId.</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-ProfileId="@item.ProfileId">Edit</a>
+                                <a asp-action="Details" asp-route-ProfileId="@item.ProfileId">Details</a>
+                                <a asp-action="Delete" asp-route-ProfileId="@item.ProfileId">Delete</a>
+                              
+                                <a  asp-controller="Task" asp-action="Index" asp-route-ProfileId="@item.ProfileId">Task</a>
+          
+                            </td>
+                        </tr>
+                        }
+                    }
+                }
+                </tbody>
+    </table>
+</div>
+
+
